@@ -20,9 +20,17 @@ public class QuestionSondage implements Serializable {
 	
 	private String question;
 	
-	@OneToMany(mappedBy="question", cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	private List<ReponseSondage> reponses;
 
+	
+	public QuestionSondage() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public QuestionSondage(String question) {
+		this.question = question;
+	}
 	
 	public List<ReponseSondage> getReponses() {
 		return reponses;

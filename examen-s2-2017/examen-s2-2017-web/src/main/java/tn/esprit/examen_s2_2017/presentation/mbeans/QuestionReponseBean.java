@@ -33,13 +33,13 @@ public class QuestionReponseBean {
 		
 		List<ReponseSondage> reponseSondagesList = new ArrayList<>();
 		ReponseSondage reponseSondage1 = new ReponseSondage(reponse1);
-		reponseSondage1.setQuestion(questionSondage);
+		//reponseSondage1.setQuestion(questionSondage);
 		
 		ReponseSondage reponseSondage2 = new ReponseSondage(reponse2);
-		reponseSondage2.setQuestion(questionSondage);
+		//reponseSondage2.setQuestion(questionSondage);
 		
 		ReponseSondage reponseSondage3 = new ReponseSondage(reponse3);
-		reponseSondage3.setQuestion(questionSondage);
+		//reponseSondage3.setQuestion(questionSondage);
 		
 		reponseSondagesList.add(reponseSondage1);
 		reponseSondagesList.add(reponseSondage2);

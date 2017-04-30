@@ -19,11 +19,8 @@ public class ReponseSondage implements Serializable {
 	
 	private String reponse;
 	
-	@ManyToOne
-	private QuestionSondage question;
 	
-	
-	@ManyToMany
+	@ManyToMany(mappedBy="reponses")
 	private List<Personne> personne;
 
 	public ReponseSondage() {
@@ -32,6 +29,10 @@ public class ReponseSondage implements Serializable {
 	
 	public ReponseSondage(String reponse) {
 		this.reponse = reponse;
+	}
+	
+	public ReponseSondage(int id) {
+		this.id=id;
 	}
 	
 	public List<Personne> getPersonne() {
@@ -59,16 +60,6 @@ public class ReponseSondage implements Serializable {
 
 	public void setReponse(String reponse) {
 		this.reponse = reponse;
-	}
-
-
-	public QuestionSondage getQuestion() {
-		return question;
-	}
-
-
-	public void setQuestion(QuestionSondage question) {
-		this.question = question;
 	}
 
 }
