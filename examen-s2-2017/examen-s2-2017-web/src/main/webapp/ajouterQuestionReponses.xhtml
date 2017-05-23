@@ -7,19 +7,19 @@
 	<ui:define name="title">Ajouter Question/Réponses</ui:define>
 	<ui:define name="content">
 	
-			<h:dataTable value="#{questionReponseBean.questions}" var="question" border="1">
+		<h:dataTable value="#{questionReponseBean.questions}" var="question" border="1">
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Question" />
 				</f:facet>
-				<h:outputText value="#{question.question}" />
+				<h:outputText value="#{question.label}" />
 			</h:column>
 			
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Réponse 1" />
 				</f:facet>
-				<h:outputText value="#{question.reponses.get(0).reponse}" />
+				<h:outputText value="#{question.reponses.get(0).label}" />
 			</h:column>
 		
 
@@ -27,14 +27,14 @@
 				<f:facet name="header">
 					<h:outputText value="Réponse 2" />
 				</f:facet>
-				<h:outputText value="#{question.reponses.get(1).reponse}" />
+				<h:outputText value="#{question.reponses.get(1).label}" />
 			</h:column>
 			
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Réponse 3" />
 				</f:facet>
-				<h:outputText value="#{question.reponses.get(2).reponse}" />
+				<h:outputText value="#{question.reponses.get(2).label}" />
 			</h:column>
 						
 		</h:dataTable>

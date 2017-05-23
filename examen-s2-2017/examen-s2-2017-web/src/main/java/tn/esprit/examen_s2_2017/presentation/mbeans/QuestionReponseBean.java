@@ -6,8 +6,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
-import tn.esprit.examen_s2_2017.persistence.QuestionSondage;
-import tn.esprit.examen_s2_2017.persistence.ReponseSondage;
+import tn.esprit.examen_s2_2017.persistence.Question;
+import tn.esprit.examen_s2_2017.persistence.Reponse;
 import tn.esprit.examen_s2_2017.services.SondageService;
 
 @ManagedBean
@@ -28,18 +28,18 @@ public class QuestionReponseBean {
 	
 	//il faut mettre cascade persist
 	public void ajouterQuestionEtReponses(){
-		QuestionSondage questionSondage = new QuestionSondage();
-		questionSondage.setQuestion(question);
+		Question questionSondage = new Question();
+		questionSondage.setLabel(question);
 		
-		List<ReponseSondage> reponseSondagesList = new ArrayList<>();
-		ReponseSondage reponseSondage1 = new ReponseSondage(reponse1);
-		//reponseSondage1.setQuestion(questionSondage);
+		List<Reponse> reponseSondagesList = new ArrayList<>();
+		Reponse reponseSondage1 = new Reponse(reponse1);
+		reponseSondage1.setQuestion(questionSondage);
 		
-		ReponseSondage reponseSondage2 = new ReponseSondage(reponse2);
-		//reponseSondage2.setQuestion(questionSondage);
+		Reponse reponseSondage2 = new Reponse(reponse2);
+		reponseSondage2.setQuestion(questionSondage);
 		
-		ReponseSondage reponseSondage3 = new ReponseSondage(reponse3);
-		//reponseSondage3.setQuestion(questionSondage);
+		Reponse reponseSondage3 = new Reponse(reponse3);
+		reponseSondage3.setQuestion(questionSondage);
 		
 		reponseSondagesList.add(reponseSondage1);
 		reponseSondagesList.add(reponseSondage2);
@@ -51,7 +51,7 @@ public class QuestionReponseBean {
 	}
 
 	
-	public List<QuestionSondage> getQuestions(){
+	public List<Question> getQuestions(){
 		return sondageService.getAllQuestionsEtReponses();
 	}
 

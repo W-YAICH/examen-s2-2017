@@ -9,9 +9,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import tn.esprit.examen_s2_2017.persistence.Personne;
-import tn.esprit.examen_s2_2017.persistence.QuestionSondage;
-import tn.esprit.examen_s2_2017.persistence.ReponseSondage;
+import tn.esprit.examen_s2_2017.persistence.Individu;
+import tn.esprit.examen_s2_2017.persistence.Question;
+import tn.esprit.examen_s2_2017.persistence.Reponse;
 
 @Stateless
 @LocalBean
@@ -21,13 +21,13 @@ public class SondageService implements SondageServiceRemote{
 	EntityManager em;
 
 	@Override
-	public int ajouterQuestion(QuestionSondage question){
+	public int ajouterQuestion(Question question){
 		em.persist(question);
 		return question.getId();
 	}
 	
 	@Override
-	public int ajouterReponse(ReponseSondage reponse){
+	public int ajouterReponse(Reponse reponse){
 		em.persist(reponse);
 		return reponse.getId();
 	}
@@ -35,36 +35,36 @@ public class SondageService implements SondageServiceRemote{
 	
 	@Override
 	public void affecterQuestionReponses(int idQuestion, int idReponse1, int idReponse2, int idReponse3) {
-		ReponseSondage reponse1 = new ReponseSondage(idReponse1);
-		ReponseSondage reponse2 = new ReponseSondage(idReponse2);
-		ReponseSondage reponse3 = new ReponseSondage(idReponse3);
+		Reponse reponse1 = new Reponse(idReponse1);
+		Reponse reponse2 = new Reponse(idReponse2);
+		Reponse reponse3 = new Reponse(idReponse3);
 		
-		QuestionSondage questionSondage = em.find(QuestionSondage.class, idQuestion);
-		questionSondage.getReponses().add(reponse1);
-		questionSondage.getReponses().add(reponse2);
-		questionSondage.getReponses().add(reponse3);
+		Question question = em.find(Question.class, idQuestion);
+		question.getReponses().add(reponse1);
+		question.getReponses().add(reponse2);
+		question.getReponses().add(reponse3);
 
-		em.merge(questionSondage);
+		em.merge(question);
 	}
 	
 	@Override
-	public void ajouterQuestionEtReponses(QuestionSondage question){
+	public void ajouterQuestionEtReponses(Question question){
 		em.persist(question);
 	}
 	
 	@Override
-	public List<QuestionSondage> getAllQuestionsEtReponses(){
-		return em.createQuery("from QuestionSondage").getResultList();
+	public List<Question> getAllQuestionsEtReponses(){
+		return em.createQuery("from Question").getResultList();
 	}
 	
 	@Override
-	public int ajouterPersonneEtAffecterReponse(Integer reponseSondageId, Personne personne){
+	public int ajouterPersonneEtAffecterReponse(Integer reponseSondageId, Individu personne){
 		if(personne.getReponses() == null){
-			List<ReponseSondage> reponseSondages = new ArrayList<ReponseSondage>();
-			reponseSondages.add(em.find(ReponseSondage.class, reponseSondageId));
+			List<Reponse> reponseSondages = new ArrayList<>();
+			reponseSondages.add(em.find(Reponse.class, reponseSondageId));
 			personne.setReponses(reponseSondages);
 		}else{
-			personne.getReponses().add(em.find(ReponseSondage.class, reponseSondageId));
+			personne.getReponses().add(em.find(Reponse.class, reponseSondageId));
 		}
 		em.persist(personne);
 		return personne.getId();
@@ -85,17 +85,17 @@ public class SondageService implements SondageServiceRemote{
 	}
 
 	@Override
-	public List<ReponseSondage> getAllResponsesParPersonnes(int personneId) {
+	public List<Reponse> getAllResponsesParPersonnes(int personneId) {
 		Query query = em.createQuery("select p from Personne p where p.id=:personneId");
 		query.setParameter("personneId", personneId);
-		Personne p = (Personne) query.getSingleResult();
+		Individu p = (Individu) query.getSingleResult();
 		return p.getReponses();
 	}
 
 	@Override
 	public void affecterReponseAPersonne(int reponseId, int personneId) {
-		Personne personne = em.find(Personne.class, personneId);
-		personne.getReponses().add(em.find(ReponseSondage.class, reponseId));
+		Individu personne = em.find(Individu.class, personneId);
+		personne.getReponses().add(em.find(Reponse.class, reponseId));
 	}
 	
 }

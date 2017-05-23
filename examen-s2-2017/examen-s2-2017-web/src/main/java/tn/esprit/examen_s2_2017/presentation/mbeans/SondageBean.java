@@ -7,8 +7,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
-import tn.esprit.examen_s2_2017.persistence.Personne;
-import tn.esprit.examen_s2_2017.persistence.QuestionSondage;
+import tn.esprit.examen_s2_2017.persistence.Individu;
+import tn.esprit.examen_s2_2017.persistence.Question;
 import tn.esprit.examen_s2_2017.services.SondageService;
 
 @ManagedBean
@@ -20,45 +20,27 @@ public class SondageBean {
 	
 	private Integer age;
 	
-	private QuestionSondage questionSondage;
+	private Question question;
 	
-	private Integer selectedReponseSondageId;
+	private Integer selectedReponseId;
 		
 	@EJB
 	SondageService sondageService;
 	
 	@PostConstruct
 	public void init(){
-		List<QuestionSondage>  questionSondages = sondageService.getAllQuestionsEtReponses();
-		// if you need to generate numbers from min to max (including both)
-		//random.nextInt(max - min + 1) + min
-		if(!questionSondages.isEmpty()){
+		List<Question>  questions = sondageService.getAllQuestionsEtReponses();
+
+		if(!questions.isEmpty()){
 			Random random = new Random();
-			int indexRandom = random.nextInt(questionSondages.size());
-			questionSondage = questionSondages.get(indexRandom);			
+			int indexRandom = random.nextInt(questions.size());
+			question = questions.get(indexRandom);			
 		}
 	}
 	
 	public void ajouterSondage(){
-		Personne personne = new Personne(nom, prenom, age);
-		sondageService.ajouterPersonneEtAffecterReponse(selectedReponseSondageId, personne);
-	}
-
-
-	public Integer getSelectedReponseSondageId() {
-		return selectedReponseSondageId;
-	}
-
-	public void setSelectedReponseSondageId(Integer selectedReponseSondageId) {
-		this.selectedReponseSondageId = selectedReponseSondageId;
-	}
-
-	public QuestionSondage getQuestionSondage() {
-		return questionSondage;
-	}
-
-	public void setQuestionSondage(QuestionSondage questionSondage) {
-		this.questionSondage = questionSondage;
+		Individu personne = new Individu(nom, prenom, age);
+		sondageService.ajouterPersonneEtAffecterReponse(selectedReponseId, personne);
 	}
 
 	public String getNom() {
@@ -83,6 +65,30 @@ public class SondageBean {
 
 	public void setAge(Integer age) {
 		this.age = age;
+	}
+
+	public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
+
+	public Integer getSelectedReponseId() {
+		return selectedReponseId;
+	}
+
+	public void setSelectedReponseId(Integer selectedReponseId) {
+		this.selectedReponseId = selectedReponseId;
+	}
+
+	public SondageService getSondageService() {
+		return sondageService;
+	}
+
+	public void setSondageService(SondageService sondageService) {
+		this.sondageService = sondageService;
 	}
 
 }

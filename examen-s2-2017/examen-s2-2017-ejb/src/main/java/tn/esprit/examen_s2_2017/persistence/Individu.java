@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Personne implements Serializable {
+public class Individu implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -24,25 +24,25 @@ public class Personne implements Serializable {
 	private Integer age; // doit etre entier et ne doit pas dépasser 3 chiffre
 	
 	@ManyToMany(fetch=FetchType.EAGER)
-	private List<ReponseSondage> reponses;
+	private List<Reponse> reponses;
 
 	
-	public Personne(String nom, String prenom, Integer age) {
+	public Individu(String nom, String prenom, Integer age) {
 		this.age = age;
 		this.prenom = prenom;
 		this.nom = nom;
 	}
 
-	public Personne() {
+	public Individu() {
 		super();
 	}
 
 	
-	public List<ReponseSondage> getReponses() {
+	public List<Reponse> getReponses() {
 		return reponses;
 	}
 
-	public void setReponses(List<ReponseSondage> reponses) {
+	public void setReponses(List<Reponse> reponses) {
 		this.reponses = reponses;
 	}
 

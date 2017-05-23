@@ -7,32 +7,32 @@
 	<ui:define name="title">Sondage</ui:define>
 	<ui:define name="content">
 	<br/>
-		<h:form>
-			<h:panelGrid columns="2">
-			
-				<h:outputText value="Nom" />
-				<h:inputText value="#{sondageBean.nom}" />
-				
-				<h:outputText value="Prenom" />
-				<h:inputText value="#{sondageBean.prenom}" />
-				
-				<h:outputText value="Age" />
-				<h:inputText value="#{sondageBean.age}" />
+<h:form>
+	<h:panelGrid columns="2">
+	
+		<h:outputText value="Nom" />
+		<h:inputText value="#{sondageBean.nom}" />
+		
+		<h:outputText value="Prenom" />
+		<h:inputText value="#{sondageBean.prenom}" />
+		
+		<h:outputText value="Age" />
+		<h:inputText value="#{sondageBean.age}" />
 
-				<h:outputText value="Question : " />
-				<h:outputText value="#{sondageBean.questionSondage.question}" />
-			
-				<h:outputText value="Réponse : " />
-				<h:selectOneMenu value="#{sondageBean.selectedReponseSondageId}" >
-					<f:selectItems value="#{sondageBean.questionSondage.reponses}" 
-						var="reponse" itemValue="#{reponse.id}" 
-						itemLabel="#{reponse.reponse}" />
-				</h:selectOneMenu>
-			
-			</h:panelGrid>
-			<br/>
-			<h:commandButton action="#{sondageBean.ajouterSondage()}" value="Ajouter sondage" />
-		</h:form>
+		<h:outputText value="Question : " />
+		<h:outputText value="#{sondageBean.question.label}" />
+	
+		<h:outputText value="Réponse : " />
+		<h:selectOneMenu value="#{sondageBean.selectedReponseId}" >
+			<f:selectItems value="#{sondageBean.question.reponses}" 
+				var="reponse" itemValue="#{reponse.id}" 
+				itemLabel="#{reponse.label}" />
+		</h:selectOneMenu>
+	
+	</h:panelGrid>
+	<br/>
+	<h:commandButton action="#{sondageBean.ajouterSondage()}" value="Ajouter sondage" />
+</h:form>
 
 	</ui:define>
 
