@@ -17,7 +17,7 @@ import tn.esprit.examen_s2_2017.persistence.Reponse;
 @LocalBean
 public class SondageService implements SondageServiceRemote{
 	
-	@PersistenceContext(unitName="examen-sondage")
+	@PersistenceContext(unitName="examen")
 	EntityManager em;
 
 	@Override

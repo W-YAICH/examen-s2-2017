@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/template/template.xhtml">
+
+	<ui:define name="title">Users : </ui:define>
+	<ui:define name="content">
+	
+<h:dataTable value="#{userBean.users}" var="user" border="1">
+	<h:column>
+		<f:facet name="header">
+			<h:outputText value="Id" />
+		</f:facet>
+		<h:outputText value="#{user.id}" />
+	</h:column>
+	<h:column>
+		<f:facet name="header">
+			<h:outputText value="Name" />
+		</f:facet>
+		<h:outputText value="#{user.name}" />
+	</h:column>
+</h:dataTable>
+<br/>
+<br/>
+<h:form>
+	<h:panelGrid columns="2">
+		<h:outputText value="Name" />
+		<h:inputText value="#{userBean.user.name}" />
+	</h:panelGrid>
+	<h:commandButton action="#{userBean.ajouterUser()}" value="Ajouter user" />
+</h:form>
+		
+	<br/>
+	<br/>
+	<br/>
+	<h:link outcome="/sondage" value="Aller au Sondage"/>
+
+	</ui:define>
+
+</ui:composition>

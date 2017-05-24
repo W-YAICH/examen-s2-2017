@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/template/template.xhtml">
+
+	<ui:define name="title">Demandes créees par un utilisateur</ui:define>
+	<ui:define name="content">
+	<br/>
+<h:form>
+<h:panelGrid columns="2">
+	<h:outputText value="User : " />
+	<h:selectOneMenu value="#{demandesBean.selectedUserId}" >
+		<f:selectItems value="#{userBean.users}" 
+			var="user" itemValue="#{user.id}" 
+			itemLabel="#{user.name}" />
+	</h:selectOneMenu>
+</h:panelGrid>
+<br/>
+<h:commandButton action="#{demandesBean.afficherDemandes()}" value="Afficher demandes" />
+</h:form>
+
+<br/>
+<h:dataTable value="#{demandesBean.demandes}" var="demande" border="1">
+	<h:column>
+		<f:facet name="header">
+			<h:outputText value="Id" />
+		</f:facet>
+		<h:outputText value="#{demande.id}" />
+	</h:column>
+				
+	<h:column>
+		<f:facet name="header">
+			<h:outputText value="Demande" />
+		</f:facet>
+		<h:outputText value="#{demande.libele}" />
+	</h:column>
+	
+</h:dataTable>
+	</ui:define>
+
+</ui:composition>
