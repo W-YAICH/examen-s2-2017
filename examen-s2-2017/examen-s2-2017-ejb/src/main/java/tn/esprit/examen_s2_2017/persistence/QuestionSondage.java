@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Question implements Serializable {
+public class QuestionSondage implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,14 +21,14 @@ public class Question implements Serializable {
 	private String label;
 	
 	@OneToMany(mappedBy="question", cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
-	private List<Reponse> reponses;
+	private List<ReponseSondage> reponses;
 
 	
-	public Question() {
+	public QuestionSondage() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Question(String question) {
+	public QuestionSondage(String question) {
 		this.label = question;
 	}
 
@@ -48,13 +48,14 @@ public class Question implements Serializable {
 		this.label = label;
 	}
 
-	public List<Reponse> getReponses() {
+	public List<ReponseSondage> getReponses() {
 		return reponses;
 	}
 
-	public void setReponses(List<Reponse> reponses) {
+	public void setReponses(List<ReponseSondage> reponses) {
 		this.reponses = reponses;
 	}
+
 	
 
 }

@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Reponse implements Serializable {
+public class ReponseSondage implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -20,20 +20,20 @@ public class Reponse implements Serializable {
 	private String label;
 	
 	@ManyToOne
-	private Question question;
+	private QuestionSondage question;
 	
 	@ManyToMany(mappedBy="reponses")
-	private List<Individu> personne;
+	private List<Personne> personne;
 
-	public Reponse() {
+	public ReponseSondage() {
 		super();
 	}
 	
-	public Reponse(String reponse) {
+	public ReponseSondage(String reponse) {
 		this.label = reponse;
 	}
 	
-	public Reponse(int id) {
+	public ReponseSondage(int id) {
 		this.id=id;
 	}
 
@@ -53,23 +53,23 @@ public class Reponse implements Serializable {
 		this.label = label;
 	}
 
-	public List<Individu> getPersonne() {
-		return personne;
-	}
-
-	public void setPersonne(List<Individu> personne) {
-		this.personne = personne;
-	}
-
-	public Question getQuestion() {
+	public QuestionSondage getQuestion() {
 		return question;
 	}
 
-	public void setQuestion(Question question) {
+	public void setQuestion(QuestionSondage question) {
 		this.question = question;
 	}
-	
 
+	public List<Personne> getPersonne() {
+		return personne;
+	}
+
+	public void setPersonne(List<Personne> personne) {
+		this.personne = personne;
+	}
+
+	
 	
 	
 }
