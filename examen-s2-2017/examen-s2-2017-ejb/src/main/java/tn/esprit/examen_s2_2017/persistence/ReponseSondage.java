@@ -19,9 +19,6 @@ public class ReponseSondage implements Serializable {
 	
 	private String label;
 	
-	@ManyToOne
-	private QuestionSondage question;
-	
 	@ManyToMany(mappedBy="reponses")
 	private List<Personne> personne;
 
@@ -51,14 +48,6 @@ public class ReponseSondage implements Serializable {
 
 	public void setLabel(String label) {
 		this.label = label;
-	}
-
-	public QuestionSondage getQuestion() {
-		return question;
-	}
-
-	public void setQuestion(QuestionSondage question) {
-		this.question = question;
 	}
 
 	public List<Personne> getPersonne() {

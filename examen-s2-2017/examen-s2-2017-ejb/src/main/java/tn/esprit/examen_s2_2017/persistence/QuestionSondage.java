@@ -20,7 +20,7 @@ public class QuestionSondage implements Serializable {
 	
 	private String label;
 	
-	@OneToMany(mappedBy="question", cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	private List<ReponseSondage> reponses;
 
 	
